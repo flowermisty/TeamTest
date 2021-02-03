@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+
+<script>
+		function formSend(){
+			//document.폼네임.엘리먼트이름.value
+			if(document.frm.userId.value=="" || document.getElementById("userId").value.trim()==""){
+				alert("아이디를 입력하세요.");
+				document.frm.userId.focus();
+				return false;
+			}
+			if(document.frm.userPw.value=="" || document.getElementById("userPw").value.trim()==""){
+				alert("패스워드를 입력하세요");
+				document.frm.userPw.focus();
+				return false;
+			}
+			if(document.getElementById("userName").value.trim()==""){
+				alert("이름을 입력하세요");
+				document.frm.userName.focus();
+				return false;
+			}
+			if(document.getElementById("userBirth").value.trim()==""){
+				alert("생년월일을 입력하세요");
+				document.frm.userBirth.focus();
+				return false;
+			}
+			if(document.getElementById("userEmail").value.trim()==""){
+				alert("이메일을 입력하세요");
+				document.frm.userEmail.focus();
+				return false;
+			}
+			if(document.getElementById("userAddr").value.trim()==""){
+				alert("주소를 입력하세요");
+				document.frm.userAddr.focus();
+				return false;
+			}
+			if(document.getElementById("userPh1").value.trim()==""){
+				alert("연락처를 입력하세요");
+				document.frm.userPh1.focus();
+				return false;
+			}
+			if(document.getElementById("userPw").value.trim()!=
+					document.getElementById("userPwCon").value.trim()){
+						alert("비밀번호와 비밀번호 확인이 다릅니다.");
+						document.frm.userPw.value="";
+						document.frm.userPwCon.value="";
+						document.frm.userPw.focus()="";
+						return false;
+					}
+
+			if(!document.getElementById("agree").checked){
+				alert("약관에 동의하세요")
+				document.getElementById("agree").focus();
+				return false;
+			}
+
+			var isInterest = false;
+			var arr_interest = documnet.getElementsByName("interest");
+
+			for(var i=0; i<arr_interest.length; i++){
+				if(arr_interest[i].checked==true){
+					isInterest=true;
+					break;
+				}
+				else if(!isInterest){
+				alert("관심사항을 적어도 하나이상 체크하시오");
+				return false;
+				}
+			}
+			
+		}
+</script>
+
+ </head>
+ <body>
+<form action="test.html" name="frm" id="frm" method="post" onsubmit="return formSend();">
+<fieldset>
+<legend>회원가입 정보</legend>
+  <table border="1" align = "center">
+    <caption>회원 가입</caption>
+    <colgroup>
+      <col width="200" />
+      <col width="400" />
+    </colgroup>
+	<tfoot>
+		<th colspan = "2">
+			<input type= "submit" value="가입완료" />
+			<input type= "reset" value="다시 입력" />
+			<input type= "button" value="가입 안함" />
+
+		</th>
+	</tfoot>
+    <tbody>
+
+      <tr>    
+        <td colspan=2>약관동의
+			<input type="checkbox" name="agree" id="agree" />
+		</td>
+      </tr>
+
+		<tr align="center">
+		<p><td colspan="3">사용자 ID와 비밀번호 입력</td></p>
+		</tr>
+
+      <tr>
+        <th>사용자 ID</th>
+        <td><input type="text" name="userId" id="userId" />
+		<input type="button" name="userConfirm" id="userConfirm" value="중복확인"/>
+		</td>
+      </tr>
+      <tr>
+        <th>비밀번호</th>
+        <td><input type="password" name="userPw" id="userPw"/></td>
+      </tr>
+      <tr>
+        <th>비밀번호확인</th>
+        <td><input type="password" name="userPwCon" id="userPwCon"/></td>
+      </tr>
+		<tr align="center">
+		<p><td colspan="3">사용자 기본 정보</td></p>
+		</tr>	
+	  <tr>
+        <th>사용자 이름</th>
+        <td><input type="text" name="userName" id="userName"/></td>
+      </tr>
+      <tr>
+        <th>생년원일</th>
+        <td><input type = "date" name="userBirth" id="userBirth"></td>
+      </tr>
+	  <tr>
+ 		<th >성별</th>
+ 		<td  width = "400">
+ 			 남자 : <input type="radio" value="M" name="userGender">
+ 			 여자 : <input type="radio" value="F" name="userGender">
+ 		</td>
+ 	  </tr>
+
+		<tr align="center">
+		<p><td colspan="3">사용자 연락처</td></p>
+		</tr>
+      <tr>
+        <th >사용자 이메일 </th>
+        <td><input type="text" name="userEmail" id="userEmail"/></td> <!-- user_email -->
+      </tr>
+      <tr>
+		<th>사용자 주소</th>
+		<td >
+			<input type="text" name="userAddr"  id="userAddr"/> <!-- user_addr -->
+		</td>
+	  </tr>
+	  <tr>
+		<th>*사용자 연락처1</td>
+		<td>
+			<input type="text" name="userPh1" id="userPh1" pattern="\d{3}-\d{3,4}-\d{4}" /> <!-- user_ph1 -->
+		</td>
+	</tr>
+	<tr>
+		<th>*사용자 연락처2</th>
+		<td>
+			<input type="text" name="userPh2" id="userPh2" pattern="\d{3}-\d{3,4}-\d{4}"/>
+		</td>
+	</tr>
+		
+		<tr>
+			<th>관심분야</th>
+			<td>
+				<input type="checkbox" name="interest" value="HTML"/>HTML
+				<input type="checkbox" name="interest" value="Css"/>Css
+				<input type="checkbox" name="interest" value="Javascript"/>Javascript
+			</td>
+		</tr>
+    </tbody>
+  </table>
+</fieldset>
+	</form>
+ </body>
+</html>
